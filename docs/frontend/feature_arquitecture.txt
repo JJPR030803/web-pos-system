@@ -1,0 +1,12 @@
+It might change
+
+src/features/
+├── auth/              # Login, Register, Session management
+├── inventory/         # Product management, Stock updates
+├── sales/             # The actual POS terminal, Cart logic
+│   ├── api/           # API calls specific to Sales (e.g., submitOrder)
+│   ├── components/    # Components only used in Sales (CartItem, ProductGrid)
+│   ├── hooks/         # Logic specific to Sales (useCart, useScanner)
+│   ├── types/         # Types specific to Sales (CartItem, OrderDraft)
+│   └── index.ts       # Public API: Only export what other modules need
+└── reporting/         # Sales charts, End-of-day reports

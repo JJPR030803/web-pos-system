@@ -1,0 +1,17 @@
+
+
+src/
+├── app/               # Global app setup (Providers, Router, Global CSS)
+├── assets/            # Static images, fonts, SVGs
+├── components/        # Shared "dumb" UI components (Buttons, Inputs, Cards)
+│   └── ui/            # if using Shadcn/Radix, keep primitive UI here
+├── features/          # 👈 THE CORE: Domain-specific modules
+├── hooks/             # Global hooks (useTheme, useKeyPress)
+├── layouts/           # Page layouts (DashboardLayout, AuthLayout,POSLayout)
+├── lib/               # 3rd party configurations (Axios instance, utils, cn)
+├── pages/             # Route entry points (lazy loaded)
+└── types/             # Global types (Env vars, global user interfaces)
+
+
+
+

@@ -1,7 +1,8 @@
-import { greet } from '@pos/shared';
+
+import {LoginPage} from "@/pages/LoginPage.tsx";
 
 function App() {
-  return <h1>{greet('Mundo')}</h1>;
+  return <LoginPage/>
 }
 
 export default App;

@@ -26,7 +26,7 @@
   },
 
   "scripts": {
-    "dev:frontend": "bun --cwd frontend vite run dev",
+    "dev:frontend": "bun --cwd frontend vite",
     "dev:backend": "bun --cwd backend  src/index.ts",
     "build:frontend": "bun --cwd frontend run build",
     "check": "biome check .",
