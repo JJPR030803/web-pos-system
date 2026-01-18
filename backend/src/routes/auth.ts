@@ -1,17 +1,24 @@
 import { Elysia, t } from 'elysia'
 import { userQueries } from '../db/queries/users'
+import {registerSchema,RegisterBody,LoginBody,loginSchema} from "../schemas/auth";
 
+/**
+ * Authentication routes
+ * Handles user registration and login
+ * @module routes/auth
+ */
 export const authRoutes = new Elysia({ prefix: '/auth' })
-  .post(
+    /**
+     * POST /auth/register
+     * Register a new user account
+     */
+    .post(
     '/register',
     async ({ body, set }) => {
       // Check if user exists
-        const {email, password, fullName,role} = body as{
-            email: string,
-            password: string,
-            role?: string
-            fullName: string
-        }
+        const {email, password, fullName,role} = body as RegisterBody;
+
+
       const existing = await userQueries.findByEmail(email)
       if (existing) {
         set.status = 400
@@ -31,21 +38,23 @@ export const authRoutes = new Elysia({ prefix: '/auth' })
       return { user: safeUser }
     },
     {
-      body: t.Object({
-        email: t.String(),
-        password: t.String({ minLength: 6 }),
-        fullName: t.String(),
-        role: t.Optional(t.String()),
-      }),
+      body: registerSchema,
+        detail:{
+          summary: 'Register a new user',
+            description: 'Creates a new user with provided credentials',
+            tags: ['auth'],
+        },
     }
   )
+    /**
+     * POST /auth/login
+     * Authenticate user credentials
+     */
   .post(
     '/login',
     async ({ body, set }) => {
-        const {email,password} = body as {
-            email: string,
-            password: string
-        }
+        const {email,password} = body as LoginBody;
+
       const user = await userQueries.findByEmail(email)
 
       if (!user || user.passwordHash !== password) {
@@ -65,9 +74,11 @@ export const authRoutes = new Elysia({ prefix: '/auth' })
       }
     },
     {
-      body: t.Object({
-        email: t.String(),
-        password: t.String(),
-      }),
+      body: loginSchema,
+        detail:{
+            summary: 'Authenticate user',
+            description: 'Validates user credentials and returns auth token',
+            tags: ['auth'],
+        }
     }
   )
