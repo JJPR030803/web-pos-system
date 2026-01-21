@@ -1,7 +1,6 @@
 // backend/src/index.ts
 // backend/src/index.ts
 import { cors } from '@elysiajs/cors'
-import { greet } from '@pos/shared'
 import { Elysia } from 'elysia'
 import { db } from './db'
 import {authRoutes} from "./routes/auth";
@@ -19,6 +18,23 @@ const app = new Elysia()
 
         }
     }))
+    .onError(({code,error,set})=>{
+        if (code == 'VALIDATION'){
+            set.status = 422
+            return {
+                error: 'Validation failed',
+                details: error.message
+            }
+        }
+        if (code === 'NOT_FOUND'){
+            set.status = 404
+            return {error: 'route not found'};
+        }
+
+        console.error('Error:',error)
+        set.status = 500
+        return {error: 'Internal Server Error'}
+    })
     .get('/', () => ({message: 'POS API'}))
     .get('/health',()=> ({status:'ok'}))
     .use(authRoutes)

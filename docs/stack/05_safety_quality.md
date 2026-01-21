@@ -1,4 +1,4 @@
-```markdown
+
 # Module 05: Quality & Reliability
 
 ## 1. The Guard Rails: Biome

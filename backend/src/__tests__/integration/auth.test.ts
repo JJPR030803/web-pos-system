@@ -40,6 +40,44 @@ describe('POST /auth/register', () => {
         expect(errorResponse.error).toBe('User already exists')
 
     });
+    it('should validate email format', async () => {
+        const {error} = await api.auth.register.post(
+            {
+                ...testUsers.valid,
+                email: 'invalid-email'
+            }
+        )
+        expect(error).toBeDefined()
+        expect(error?.status).toBe(422)
+
+        if (error?.value && typeof error?.value === 'object') {
+            const errorResponse = error.value as {error:string;details?:string}
+            expect(errorResponse.error).toBe('Validation failed')
+        }
+    });
+
+
+    it('should require minimum pasword length', async () => {
+        const {error} = await api.auth.register.post({
+            ...testUsers.valid,
+            password: 'shrt'
+        })
+        expect(error).toBeDefined()
+        expect(error?.status).toBe(422)
+
+        if (error?.value && typeof error.value === 'object') {
+            const errorResponse = error.value as { error: string; details?: string }
+            expect(errorResponse.error).toBe('Validation failed')
+        }
+    });
+
+    it('should validate role enum', async () => {
+        const {error} = await api.auth.register.post({
+            ...testUsers.valid,
+            role: 'invalid-role' as any
+        })
+        expect(error?.status).toBe(422)
+    });
 })
 
 describe('POST /auth/login', () => {
