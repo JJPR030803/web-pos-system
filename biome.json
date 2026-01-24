@@ -94,6 +94,7 @@
         "noRedeclare": "error",
         "noShadowRestrictedNames": "error",
         "noUnsafeNegation": "error",
+        "noUnknownAtRules": "off",
         "useGetterReturn": "error"
       }
     }
@@ -109,6 +110,19 @@
       "bracketSameLine": false,
       "quoteStyle": "single",
       "attributePosition": "auto"
+    }
+  },
+  "css": {
+    "parser": {
+      "cssModules": false,
+      "allowWrongLineComments": true,
+      "tailwindDirectives": true
+    },
+    "linter": {
+      "enabled": true
+    },
+    "formatter": {
+      "enabled": true
     }
   },
   "json": {
@@ -135,7 +149,7 @@
       }
     },
     {
-      "includes": ["javascript", "json", "css"],
+      "includes": ["javascript", "json"],
       "linter": {
         "rules": {
           "style": {

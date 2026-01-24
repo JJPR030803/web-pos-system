@@ -1,8 +1,7 @@
-
-import {LoginPage} from "@/pages/LoginPage.tsx";
+import { LoginPage } from '@/pages/LoginPage.tsx';
 
 function App() {
-  return <LoginPage/>
+  return <LoginPage />;
 }
 
 export default App;

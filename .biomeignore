@@ -1,0 +1,10 @@
+node_modules
+dist
+build
+coverage
+.next
+.turbo
+*.min.js
+bun.lockb
+**/index.css
+**/*.css

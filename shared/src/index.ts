@@ -2,10 +2,10 @@
 // Define a Zod schema or Type here later
 
 export type {
+  ErrorResponse,
+  LoginResponse,
+  NewUser,
+  RegisterResponse,
+  SafeUser,
   User,
-    SafeUser,
-    NewUser,
-    LoginResponse,
-    RegisterResponse,
-    ErrorResponse,
-} from './types'
+} from './types';
