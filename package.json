@@ -30,6 +30,12 @@
     "dev:frontend": "bun --cwd frontend vite",
     "dev:backend": "bun --cwd backend  src/index.ts",
     "build:frontend": "bun --cwd frontend run build",
+
+    "type-check": "tsc --noEmit",
+    "type-check:backend": "tsc --noEmit -p backend/tsconfig.json",
+    "type-check:shared": "tsc --noEmit -p shared/tsconfig.json",
+    "type-check:frontend": "tsc -p frontend/tsconfig.json",
+
     "test": "bun --cwd backend test",
     "format": "biome format --write .",
     "format:check": "biome format . --skip ",
@@ -38,6 +44,7 @@
     "check": "biome check . ",
     "check:write": "biome check --write . ",
     "ci": "biome ci . ",
-    "prepare": "husky"
+    "prepare": "husky",
+    "validate": "bun run ci && bun run type-check && bun run test"
   }
 }
