@@ -1,0 +1,17 @@
+#!/bin/sh
+
+echo "🔍 Running pre-push checks..."
+
+# Type check entire project
+echo "📘 Type checking..."
+bun run type-check || exit 1
+
+# Run all tests
+echo "🧪 Running tests..."
+bun run test || exit 1
+
+# Final quality check
+echo "✨ Running Biome CI..."
+bun run ci || exit 1
+
+echo "✅ All pre-push checks passed!"
