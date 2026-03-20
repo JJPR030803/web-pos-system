@@ -14,7 +14,8 @@
     }
   },
   "files": {
-    "ignoreUnknown": false
+    "ignoreUnknown": false,
+    "includes": ["**", "!backend/k6"]
   },
   "formatter": {
     "enabled": true,

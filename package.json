@@ -37,6 +37,11 @@
     "type-check:frontend": "tsc -p frontend/tsconfig.json",
 
     "test": "bun --cwd backend test",
+    "k6:smoke": "docker run --rm -v $(pwd)/backend/k6:/k6 --add-host=host.docker.internal:host-gateway grafana/k6 run /k6/scripts/smoke.js",
+    "k6:load": "docker run --rm -v $(pwd)/backend/k6:/k6 --add-host=host.docker.internal:host-gateway grafana/k6 run /k6/scripts/load-auth.js",
+    "k6:spike": "docker run --rm -v $(pwd)/backend/k6:/k6 --add-host=host.docker.internal:host-gateway grafana/k6 run /k6/scripts/spike.js",
+    "k6:stress": "docker run --rm -v $(pwd)/backend/k6:/k6 --add-host=host.docker.internal:host-gateway grafana/k6 run /k6/scripts/stress.js",
+    "k6:soak": "docker run --rm -v $(pwd)/backend/k6:/k6 --add-host=host.docker.internal:host-gateway grafana/k6 run /k6/scripts/soak.js",
     "format": "biome format --write .",
     "format:check": "biome format . --skip ",
     "lint": "biome lint . --skip ",
